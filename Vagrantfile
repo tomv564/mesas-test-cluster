@@ -32,6 +32,7 @@ Vagrant.configure(2) do |config|
     node1.vm.hostname = "node1"
     node1.vm.box = "mesos-master"
     node1.vm.provider "virtualbox" do |vb|
+      # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       vb.memory = 1024
     end
   end
@@ -40,6 +41,7 @@ Vagrant.configure(2) do |config|
     node2.vm.network "private_network", ip: "192.168.33.11"
     node2.vm.hostname = "node2"
     node2.vm.provider "virtualbox" do |vb|
+      # vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       vb.memory = 1024
     end
   end

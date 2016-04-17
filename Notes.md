@@ -174,3 +174,41 @@ From https://github.com/mesosphere/mesos-dns/issues/334:
 Finagle could use a DNS Cluster: https://gist.github.com/agleyzer/6909056
 
 Can't see stdout from registration, what's up?
+nah, works fine.
+
+# Memory/cpu limits:
+
+In mesos logs:
+`WARNING: Your kernel does not support memory limit capabilities.`
+
+answer:
+http://tombee.co.uk/2014/11/16/kernel-does-not-support-memory-limitation/
+
+See "end of pets" article
+https://www.factual.com/blog/docker-mesos-marathon-and-the-end-of-pets
+
+# Reboot check
+
+/etc/resolv.conf is rewritten without mesos-dns entry.
+
+
+# Reality check, is this useful?
+
+- logs are a pain to get at
+- marathon does not explain why deployments are stuck on 'waiting'
+- Host vs bridge port configuration weirdness
+- Why did the HTTP health check not work?
+
+# Less complex options
+
+Mesos only reason to exist is two-level scheduling which is needed if you also want to run eg. Hadoop.
+Don't need mesos and marathon is not the only docker scheduler in town. Also avoids running JVM stuff as a cluster service. (see install pain)
+
+Kubernetes 
+Docker swarm (can use docker-compose, does not manage cluster state though?)
+
+Evaluate:
+Initial setup, networking, health monitoring and service discovery
+
+https://technologyconversations.com/2015/11/04/docker-clustering-tools-compared-kubernetes-vs-docker-swarm/
+
