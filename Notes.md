@@ -1,5 +1,15 @@
-
 # Cluster systems
+
+## Breaking up into containers, why?
+
+http://rhelblog.redhat.com/2016/03/16/container-tidbits-when-should-i-break-my-application-into-multiple-containers/
+One process per container? Why? There are many valid reasons for multiple processes in a container (eg JVM memory efficiency, web servers fork processes all the time.)
+"Processes and threads are about kernel resource allocation; containers are about cluster resource allocation."
+Also, if application is not easily decomposable then don't waste time refactoring just to containerize.
+Example: Splitting up a Java front-end and back-end REST apps.
+ * Probably little JVM benefit (why?)
+ * REST-api instead of sockets or shared memory.
+ * Can scale independently
 
 Cluster management. 
 Aurora (one big machine model).
